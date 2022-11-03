@@ -13,7 +13,7 @@ public class CamFollower : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector2 newPos = Vector2.Lerp(transform.position,followedObject.position, lerpSpeed * Time.deltaTime);
         transform.position = new Vector3(newPos.x, newPos.y, transform.position.z);

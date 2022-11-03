@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class RubyController : MonoBehaviour
 {
-    [SerializeField] float Speed;
-    [SerializeField] float lerpSpeed;
-    Vector2 targetPos;
+    Rigidbody2D RB;
+    [SerializeField] float speed;
+    [SerializeField] float acceleration;
     // Start is called before the first frame update
     void Start()
     {
-        targetPos = transform.position;
+        RB = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -18,8 +18,7 @@ public class RubyController : MonoBehaviour
     {
         float hAxis = Input.GetAxis("Horizontal");
         float vAxis = Input.GetAxis("Vertical");
-        targetPos += new Vector2(hAxis, vAxis) * Speed * Time.deltaTime;
-
-        transform.position = Vector2.Lerp(transform.position, targetPos, lerpSpeed * Time.deltaTime);
+        Vector2 targetVel = new Vector2(hAxis, vAxis) * speed;
+        RB.velocity = Vector2.Lerp(RB.velocity, targetVel, acceleration * Time.deltaTime);
     }
 }
