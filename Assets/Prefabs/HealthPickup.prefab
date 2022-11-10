@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96385b446242e814583c8efefd7e6e38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAmount: 5
+  healAmount: 50
   effect: {fileID: 1942520908252869112, guid: b2db5678bdb660245bfd0fbb9d44ea3f, type: 3}
 --- !u!212 &5462323354958147378
 SpriteRenderer:
