@@ -9,6 +9,7 @@ public class RubyController : MonoBehaviour
     [SerializeField] float acceleration;
     [SerializeField] Projectile projectile;
     [SerializeField] Transform projectileLaunchPoint;
+    [SerializeField] Camera cam;
     Animator animator;
     Vector2 lookDirection = new Vector2(1,0);
     
@@ -31,7 +32,9 @@ public class RubyController : MonoBehaviour
         animator.SetFloat("Speed", RB.velocity.magnitude);
         if(Input.GetMouseButtonDown(0))
         {
-            Instantiate(projectile, projectileLaunchPoint.position, Quaternion.EulerAngles(0,0,Mathf.Atan2(RB.velocity.y, RB.velocity.x)));
+            Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 dir = mousePos - new Vector2(transform.position.x, transform.position.y);
+            Instantiate(projectile, projectileLaunchPoint.position, Quaternion.EulerAngles(0,0,Mathf.Atan2(dir.y, dir.x)));
         }
     }
 }

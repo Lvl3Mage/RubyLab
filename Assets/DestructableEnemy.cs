@@ -6,6 +6,7 @@ public class DestructableEnemy : MonoBehaviour
 {
     [SerializeField] Object destructionEffect;
     [SerializeField] EnemyController controller;
+    [SerializeField] Transform target;
     bool destroyed = false;
     [ContextMenu("DestroyEnemy")]
     public void Damage(){
@@ -13,7 +14,7 @@ public class DestructableEnemy : MonoBehaviour
             return;
         }
         destroyed = true;
-        Instantiate(destructionEffect, transform.position, transform.rotation);
+        Instantiate(destructionEffect, target.position, target.rotation);
         controller.Stop();
         // gameObject.SetActive(false);
     }

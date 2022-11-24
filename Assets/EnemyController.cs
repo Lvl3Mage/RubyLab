@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-﻿public class EnemyController : MonoBehaviour
-{
-    public float speed;
-    public bool vertical;
-    public float changeTime = 3.0f;
+public class EnemyController : MonoBehaviour
+{   
+    [SerializeField] ParticleSystem smokeEffect;
+    [SerializeField] float speed;
+    [SerializeField] bool vertical;
+    [SerializeField] float changeTime = 3.0f;
 
     bool running = true;
     Rigidbody2D RB;
@@ -33,6 +34,8 @@ using UnityEngine;
     }
     public void Stop(){
         running = false;
+        smokeEffect.Stop();
+        Destroy(smokeEffect.gameObject);
     }
     void FixedUpdate()
     {
