@@ -13,7 +13,7 @@ public class DamageZone : MonoBehaviour
         }
         healthManager.Damage(damage);
     }
-    void OnCollisionEnter2D(Collision2D other){
+    void OnCollisionStay2D(Collision2D other){
         RubyHealthManager healthManager = other.gameObject.GetComponent<RubyHealthManager>(); // bad (Every frame)
         if(!healthManager){
             return;

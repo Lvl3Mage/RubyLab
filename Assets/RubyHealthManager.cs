@@ -14,9 +14,13 @@ public class RubyHealthManager : MonoBehaviour
 			return currentHealth;
 		}
 	}
+	HealthBarController healthbar;
 	void Start()
 	{
 		currentHealth = maxHealth;
+		healthbar = GameObject.FindWithTag("Healthbar").GetComponent<HealthBarController>();
+		healthbar.SetHealthRange(0, maxHealth);
+		healthbar.SetHealth(currentHealth);
 	}
 	public bool isFullyHealed(){
 		return currentHealth == maxHealth;
@@ -24,6 +28,7 @@ public class RubyHealthManager : MonoBehaviour
 	public void Heal(float amount){
 		currentHealth += amount;
 		currentHealth = Mathf.Clamp(currentHealth,0,maxHealth);
+		healthbar.SetHealth(currentHealth);
 	}
 	public void Damage(float amount){
 		if(isInvincible){
@@ -32,6 +37,7 @@ public class RubyHealthManager : MonoBehaviour
 		Instantiate(DamageEffect, transform.position, transform.rotation);
 		currentHealth -= amount;
 		currentHealth = Mathf.Clamp(currentHealth,0,maxHealth);
+		healthbar.SetHealth(currentHealth);
 		StartCoroutine(InvincibilityTimer());
 		
 	}
